@@ -421,24 +421,26 @@
             button.textContent = `Заказать за ${price} ₽`;
         }
         
-        // Simple sticker update for 6250-1 - only thickness selection
+        // Simple sticker update for 6250-3 - only thickness selection
         function updateStickerPreview() {
             const preview = document.getElementById('stickerPreview');
             if (!preview) return;
             
             // Show specific stickers based on thickness
-            let stickerNumber, stickerName;
+            let stickerNumber, stickerName, shape;
             if (currentSelections.thickness === 'thin') {
                 stickerNumber = 15;
                 stickerName = 'sticker-15-stick.png';
+                shape = 'cutout'; // Тонкий как cut
             } else {
                 stickerNumber = 11;
                 stickerName = 'sticker-11-stick.png';
+                shape = 'small-rectangle'; // Толстый как small rectangle
             }
             
             const imageSrc = `images/${stickerName}`;
             preview.innerHTML = `<img src="${imageSrc}" alt="Стикер ${stickerNumber}" style="width: 100%; height: 100%; object-fit: contain;">`;
-            positionSticker(preview, 'rectangle'); // Default shape
+            positionSticker(preview, shape);
         }
 
         // Sticker classification system
