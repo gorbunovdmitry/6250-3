@@ -375,75 +375,7 @@
 
         <!-- Carousel Section -->
         <div class="carousel-section">
-            <!-- Picture Selection -->
-            <div class="carousel-group">
-                <h3 class="carousel-title">Выберите картинку</h3>
-                <div class="carousel-container">
-                    <div class="carousel picture-carousel" id="pictureCarousel">
-                        <div class="carousel-item selected" data-value="empty">
-                            <div class="empty-option">Без<br>картинки</div>
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="cat">
-                            <img src="images/cat.png" alt="Кот">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="robocat">
-                            <img src="images/robocat.png" alt="Робокот">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="smile">
-                            <img src="images/smile.png" alt="Смайл">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="cookie">
-                            <img src="images/cookie man.png" alt="Пряничный человек">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="slider">
-                            <img src="images/slider.png" alt="Слайдер">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="donut">
-                            <img src="images/donut.png" alt="Пончик">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="own">
-                            <img src="images/own choice (cross).png" alt="Своя картинка" class="own-choice-img">
-                            <div class="checkmark"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Color Selection -->
-            <div class="carousel-group">
-                <h3 class="carousel-title">Выберите цвет</h3>
-                <div class="carousel-container">
-                    <div class="carousel" id="colorCarousel">
-                        <div class="carousel-item selected" data-value="black">
-                            <img src="images/black.png" alt="Черный">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="white">
-                            <img src="images/white.png" alt="Белый">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="red">
-                            <img src="images/red.png" alt="Красный">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="green">
-                            <img src="images/green.png" alt="Зеленый">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="gradient">
-                            <img src="images/gradient.png" alt="Градиент">
-                            <div class="checkmark"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Thickness Selection -->
             <div class="carousel-group">
@@ -462,49 +394,19 @@
                 </div>
             </div>
 
-            <!-- Shape Selection -->
-            <div class="carousel-group">
-                <h3 class="carousel-title">Выберите форму</h3>
-                <div class="carousel-container">
-                    <div class="carousel" id="shapeCarousel">
-                        <div class="carousel-item selected" data-value="rectangle">
-                            <img src="images/rectangle.png" alt="Прямоугольник">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="square">
-                            <img src="images/square.png" alt="Квадрат">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="circle">
-                            <img src="images/circle.png" alt="Круг">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="small-rectangle">
-                            <img src="images/small rectangle.png" alt="Маленький прямоугольник">
-                            <div class="checkmark"></div>
-                        </div>
-                        <div class="carousel-item" data-value="cutout">
-                            <img src="images/cut.png" alt="С вырезом">
-                            <div class="checkmark"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
         <!-- CTA Button -->
         <button class="cta-button" onclick="selectDesign()" id="orderButton">
-            Заказать за 990 ₽
+            Заказать за 1290 ₽
         </button>
     </div>
 
     <script>
-        // Current selections
+        // Current selections - simplified for 6250-1
         let currentSelections = {
-            picture: 'empty',
-            color: 'black',
-            thickness: 'thin',
-            shape: 'rectangle'
+            thickness: 'thin'
         };
         
         // Debug function to log current selections
@@ -515,62 +417,28 @@
         // Update order button price based on thickness
         function updateOrderButton() {
             const button = document.getElementById('orderButton');
-            const price = currentSelections.thickness === 'thin' ? '990' : '690';
+            const price = currentSelections.thickness === 'thin' ? '1290' : '990';
             button.textContent = `Заказать за ${price} ₽`;
         }
         
-        // Simple sticker update without caching
+        // Simple sticker update for 6250-1 - only thickness selection
         function updateStickerPreview() {
             const preview = document.getElementById('stickerPreview');
-            const customText = document.getElementById('customText');
+            if (!preview) return;
             
-            // Show/hide custom text based on selection
-            if (currentSelections.picture === 'own') {
-                customText.style.display = 'block';
+            // Show specific stickers based on thickness
+            let stickerNumber, stickerName;
+            if (currentSelections.thickness === 'thin') {
+                stickerNumber = 15;
+                stickerName = 'sticker-15-stick.png';
             } else {
-                customText.style.display = 'none';
+                stickerNumber = 11;
+                stickerName = 'sticker-11-stick.png';
             }
             
-            // Map UI values to classification values
-            const pictureMap = {
-                'empty': 'empty',
-                'cat': 'cat',
-                'robocat': 'robot-cat',
-                'smile': 'smile-hearts',
-                'cookie': 'gingerbread',
-                'slider': 'slider-smile',
-                'donut': 'donut',
-                'own': 'custom'
-            };
-            
-            const mappedPicture = pictureMap[currentSelections.picture] || 'empty';
-            
-            // Find sticker based on all 4 parameters
-            let sticker = findStickerByParams(
-                mappedPicture,
-                currentSelections.color,
-                currentSelections.thickness,
-                currentSelections.shape
-            );
-            
-            // If no exact match, try to find by picture only
-            if (!sticker) {
-                for (let i = 1; i <= 880; i++) {
-                    const classification = getStickerClassification(i);
-                    if (classification && classification.design === mappedPicture) {
-                        sticker = classification;
-                        break;
-                    }
-                }
-            }
-            
-            if (sticker) {
-                const imageSrc = `images/${sticker.filename}`;
-                preview.innerHTML = `<img src="${imageSrc}" alt="Стикер ${sticker.number}" style="width: 100%; height: 100%; object-fit: contain;">`;
-                positionSticker(preview, currentSelections.shape);
-            } else {
-                preview.innerHTML = '';
-            }
+            const imageSrc = `images/${stickerName}`;
+            preview.innerHTML = `<img src="${imageSrc}" alt="Стикер ${stickerNumber}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            positionSticker(preview, 'rectangle'); // Default shape
         }
 
         // Sticker classification system
@@ -684,47 +552,33 @@
             return null;
         }
 
-        // Initialize carousels
+        // Initialize carousels - simplified for 6250-1
         function initCarousels() {
-            const carousels = document.querySelectorAll('.carousel');
+            const thicknessCarousel = document.getElementById('thicknessCarousel');
             
-            carousels.forEach(carousel => {
-                carousel.addEventListener('click', (e) => {
+            if (thicknessCarousel) {
+                thicknessCarousel.addEventListener('click', (e) => {
                     const item = e.target.closest('.carousel-item');
                     if (item) {
                         // Remove selection from siblings
-                        const siblings = carousel.querySelectorAll('.carousel-item');
+                        const siblings = thicknessCarousel.querySelectorAll('.carousel-item');
                         siblings.forEach(sibling => sibling.classList.remove('selected'));
                         
                         // Add selection to clicked item
                         item.classList.add('selected');
                         
                         // Update current selection
-                        const carouselId = carousel.id;
                         const value = item.dataset.value;
+                        currentSelections.thickness = value;
                         
-                        console.log('Carousel clicked:', carouselId, 'Value:', value);
+                        console.log('Thickness selected:', value);
                         
-                        if (carouselId === 'pictureCarousel') {
-                            currentSelections.picture = value;
-                        } else if (carouselId === 'colorCarousel') {
-                            currentSelections.color = value;
-                        } else if (carouselId === 'thicknessCarousel') {
-                            currentSelections.thickness = value;
-                        } else if (carouselId === 'shapeCarousel') {
-                            currentSelections.shape = value;
-                        }
-                        
-                        console.log('Updated selections:', currentSelections);
-                        
-                        // Always update sticker preview when any parameter changes
+                        // Update sticker preview and button
                         updateStickerPreview();
-                        
-                        // Update order button price
                         updateOrderButton();
                     }
                 });
-            });
+            }
         }
 
 
@@ -757,18 +611,9 @@
         }
 
         function selectDesign() {
-            const sticker = findStickerByParams(
-                currentSelections.picture,
-                currentSelections.color,
-                currentSelections.thickness,
-                currentSelections.shape
-            );
-            
-            if (sticker) {
-                alert(`Выбран стикер №${sticker.number}: ${sticker.design} ${sticker.color} ${sticker.shape} ${sticker.thickness}`);
-            } else {
-                alert('Стикер с такими параметрами не найден');
-            }
+            const stickerNumber = currentSelections.thickness === 'thin' ? 15 : 11;
+            const thicknessText = currentSelections.thickness === 'thin' ? 'тонкий' : 'толстый';
+            alert(`Выбран ${thicknessText} стикер №${stickerNumber}`);
         }
 
         // Initialize on page load
