@@ -682,7 +682,7 @@
                 timestamp: new Date().toISOString(),
                 variant: variant,
                 thickness: currentSelections.thickness || 'thick',
-                shape: getShapeName(currentSelections.shape || 'rectangle'),
+                shape: 'Нет выбора',
                 color: getColorName(currentSelections.color || 'red'),
                 picture: getPictureName(currentSelections.picture || 'empty'),
                 price: getPrice(variant, currentSelections.thickness || 'thick')
@@ -820,7 +820,7 @@
                 timestamp: new Date().toISOString(),
                 variant: variant,
                 thickness: currentSelections.thickness === 'thin' ? 'thin' : 'thick',
-                shape: getShapeName(currentSelections.shape || 'small-rectangle'),
+                shape: 'Нет выбора',
                 color: getColorName(currentSelections.color || 'red'),
                 picture: getPictureName(currentSelections.picture || 'empty'),
                 price: price
