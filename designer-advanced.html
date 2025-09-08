@@ -614,11 +614,9 @@
         }
 
         function selectDesign() {
-            const stickerNumber = currentSelections.thickness === 'thin' ? 15 : 11;
-            const thicknessText = currentSelections.thickness === 'thin' ? 'тонкий' : 'толстый';
-            alert(`Выбран ${thicknessText} стикер №${stickerNumber}`);
+            // Перенаправляем на страницу-заглушку
+            window.location.href = 'thank-you.html';
         }
-
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             initCarousels();
