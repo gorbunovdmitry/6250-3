@@ -683,8 +683,8 @@
                 variant: variant,
                 thickness: currentSelections.thickness || 'thick',
                 shape: 'Нет выбора',
-                color: getColorName(currentSelections.color || 'red'),
-                picture: getPictureName(currentSelections.picture || 'empty'),
+                color: 'Нет выбора',
+                picture: 'Нет выбора',
                 price: getPrice(variant, currentSelections.thickness || 'thick')
             };
             
@@ -821,8 +821,8 @@
                 variant: variant,
                 thickness: currentSelections.thickness === 'thin' ? 'thin' : 'thick',
                 shape: 'Нет выбора',
-                color: getColorName(currentSelections.color || 'red'),
-                picture: getPictureName(currentSelections.picture || 'empty'),
+                color: 'Нет выбора',
+                picture: 'Нет выбора',
                 price: price
             };
         }
